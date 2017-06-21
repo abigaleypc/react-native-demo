@@ -15,7 +15,6 @@ export default class FriendsSence extends Component {
     };
   }
   goChat(rowData) {
-    console.log(rowData)
     this.props.navigator.push({
       name: 'ChatSence',
       component: ChatSence,
@@ -34,12 +33,15 @@ export default class FriendsSence extends Component {
         </View>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <TouchableOpacity onPress={this.goChat.bind(this,rowData)}>
-            <Text>{rowData}</Text>
-          </TouchableOpacity>}
+          renderRow={(rowData) => 
+            <TouchableOpacity 
+              style={styles.listItem}
+              onPress={this.goChat.bind(this,rowData)}>
+              <Text>{rowData}</Text>
+            </TouchableOpacity>
+          }
         />
       </View>
-
     )
   }
 }
@@ -54,5 +56,13 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 20,
     color: '#fff'
+  },
+  listItem: {
+    height: 50,
+    justifyContent: 'center',
+    borderBottomColor: '#eee',
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
+    padding: 10
   }
 })
