@@ -6,18 +6,20 @@ import { View, Text, TouchableOpacity, StyleSheet, TextInput,ListView} from 'rea
 export default class ChatSence extends Component {
   constructor(props) {
     super(props);
+
+    if(!window.abigale) {
+      window.abigale = {
+        msgList:[]
+      }
+    }
+
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      dataSource: ds.cloneWithRows([{
-        name: 'ABIAGE',
-        msg: '我来啦来啦来啦'
-      },{
-        name: 'ABIAGE',
-        msg: '我来啦来啦来啦'
-      },{
-        name: 'ABIAGE',
-        msg: '我来啦来啦来啦'
-      }])
+      inputing: {
+        name: 'abi',
+        msg: ''
+      },
+      dataSource: ds.cloneWithRows(window.abigale.msgList)
     };
   }
   goBack() {
@@ -29,7 +31,14 @@ export default class ChatSence extends Component {
   }
 
   sendMsg() {
-
+    if(this.state.inputing.msg == '') {
+      alert("不能不打字就发送的")
+    }
+    else {
+      window.abigale.msgList.push(this.state.inputing);
+      this.setState({dataSource: this.state.dataSource.cloneWithRows(window.abigale.msgList)})
+      this.setState({inputing:{ name: '', msg: ''}})
+    }
   }
   render() {
     return (
@@ -55,11 +64,16 @@ export default class ChatSence extends Component {
         <View>
           <TextInput
             style={styles.input}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
+            onChangeText={
+              (msg) => {
+                this.setState({inputing:{name:'Abi',msg:msg}});
+              }
+            }
+            value={this.state.inputing.msg}
           />
           <TouchableOpacity 
             style={styles.sendBtn}
+            onPress={()=>{this.sendMsg()}}
           >
             <Text style={styles.sendText}>发送</Text>
           </TouchableOpacity>

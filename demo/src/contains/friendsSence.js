@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Navigator, ListView } from 'react-native';
 
-import ChatSence from './chatSence'
+import ChatSence from './chatSence';
+
+import friendsData from '../../mocks/friendsData'
 
 export default class FriendsSence extends Component {
   // 初始化数据
@@ -9,9 +11,7 @@ export default class FriendsSence extends Component {
     super(props);
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
-      ])
+      dataSource: ds.cloneWithRows(friendsData)
     };
   }
   goChat(rowData) {
