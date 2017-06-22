@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Navigator, ListView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Navigator, ListView, Image } from 'react-native';
 
 import ChatSence from './chatSence';
 
-import friendsData from '../../mocks/friendsData'
+import friendsData from '../../mocks/friendsData';
 
 export default class FriendsSence extends Component {
   // 初始化数据
@@ -19,7 +19,7 @@ export default class FriendsSence extends Component {
       name: 'ChatSence',
       component: ChatSence,
       params: {
-        name: rowData
+        name: rowData.name
       }
     })
   }
@@ -37,7 +37,11 @@ export default class FriendsSence extends Component {
             <TouchableOpacity 
               style={styles.listItem}
               onPress={this.goChat.bind(this,rowData)}>
-              <Text>{rowData}</Text>
+              
+              <Image 
+                style={styles.avatar}
+                source={require('../../assets/avatar6.jpeg')} />
+              <Text style={styles.name}>{rowData.name}</Text>
             </TouchableOpacity>
           }
         />
@@ -59,10 +63,23 @@ const styles = StyleSheet.create({
   },
   listItem: {
     height: 50,
-    justifyContent: 'center',
     borderBottomColor: '#eee',
     borderBottomWidth: 1,
     borderStyle: 'solid',
-    padding: 10
+    paddingTop: 5,
+    paddingBottom: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    flexDirection: 'row',
+    alignItems: 'flex-start'
+
+  },
+  name: {
+    marginLeft: 10,
+    lineHeight: 40
+  },
+  avatar: {
+    width: 40,
+    height: 40,
   }
 })
