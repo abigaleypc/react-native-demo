@@ -26,24 +26,23 @@
 在 `index.ios.js` 中
 
 ```js
+let defaultName = 'FriendsSence'; // 默认进入路由的名称
+let defaultComponent = FriendsSence; // 默认进入的窗口
 
-	let defaultName = 'FriendsSence'; // 默认进入路由的名称
-	let defaultComponent = FriendsSence; // 默认进入的窗口
-
-  <Navigator
-    style={styles.nav}
-    initialRoute={{ name: defaultName, component: defaultComponent }}
-    configureScene={(route) => {
-      return Navigator.SceneConfigs.VerticalDownSwipeJump;
-    }}
-    renderScene={(route, navigator) => {
-      let Component = route.component;
-      return <Component
-        {...route.params} navigator={navigator} // 将导航传给待渲染的窗口
-      />
-    }
-    }
-  />
+<Navigator
+  style={styles.nav}
+  initialRoute={{ name: defaultName, component: defaultComponent }}
+  configureScene={(route) => {
+    return Navigator.SceneConfigs.VerticalDownSwipeJump;
+  }}
+  renderScene={(route, navigator) => {
+    let Component = route.component;
+    return <Component
+      {...route.params} navigator={navigator} // 将导航传给待渲染的窗口
+    />
+  }
+  }
+/>
 ```
 
 以上将导航传给下一个窗口的原因可以参考：[新手理解Navigator的教程](http://bbs.reactnative.cn/topic/20/%E6%96%B0%E6%89%8B%E7%90%86%E8%A7%A3navigator%E7%9A%84%E6%95%99%E7%A8%8B)
@@ -76,27 +75,27 @@ this.props.navigator.ppo();
 列表渲染采用 `ListView`，[参考](http://reactnative.cn/docs/0.39/using-a-listview.html#content)
 
 ```js
-   const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-   this.state = {
-      dataSource: ds.cloneWithRows(msgsData[this.props.name])
-   }
-   
-   
-   <ListView
-      dataSource={this.state.dataSource}
-      renderRow={(rowData) => <Text>{rowData}</Text>}
-    />
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+this.state = {
+  dataSource: ds.cloneWithRows(msgsData[this.props.name])
+}
+
+
+<ListView
+  dataSource={this.state.dataSource}
+  renderRow={(rowData) => <Text>{rowData}</Text>}
+/>
 ```
 
 
 #### 消息队列
 
 ```js
-this.setState({ 
-	dataSource: this.state.dataSource.cloneWithRows(
-		[...this.state.dataSource._dataBlob.s1, 
-		...this.state.inputing]) 
-	})
+this.setState({
+  dataSource: this.state.dataSource.cloneWithRows(
+    [...this.state.dataSource._dataBlob.s1, 
+    ...this.state.inputing])
+})
 ```
 
 * `this.state.inputing` 是需要增加的信息
@@ -115,23 +114,23 @@ this.setState({
 * `TouchableHighlight` 按钮文字
 
   ```html
-  	<TouchableHighlight>文字</TouchableHighlight> //这么写是会报错的
+  <TouchableHighlight>文字</TouchableHighlight> //这么写是会报错的
   ```
   
   应改为
 
   ```html
-  	<TouchableHighlight><Text>文字</Text></TouchableHighlight>
+  <TouchableHighlight><Text>文字</Text></TouchableHighlight>
   ```
 * 用闭包解决 `this` 读取不到的问题
 
-	```js
-	<TouchableOpacity style={styles.sendBtn} onPress={this.sendMsg()} >
+	```html
+  <TouchableOpacity style={styles.sendBtn} onPress={this.sendMsg()} >
 	```
 	  
 	  应改为
 	
 	```js
-	<TouchableOpacity style={styles.sendBtn} onPress={()=>{this.sendMsg()}} >
+  <TouchableOpacity style={styles.sendBtn} onPress={()=>{this.sendMsg()}} >
 	```
   
