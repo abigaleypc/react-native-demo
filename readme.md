@@ -107,9 +107,9 @@ this.setState({
 * 样式不会继承 所以设置字体大小的话只在header里设置并不会在headerText生效
 
   ```html
-  	<View style={styles.header}> 
-	  	<Text style={styles.headerText}>{this.props.title}</Text> 
-	</View> 
+  <View style={styles.header}> 
+    <Text style={styles.headerText}>{this.props.title}</Text> 
+  </View> 
   ```
 * `TouchableHighlight` 按钮文字
 
