@@ -2,37 +2,29 @@ friendsData = [
 
   
   {
-    'id': 0,
-    'name': 'John',
-    'avatar': '../../assets/avatar1.jpeg'
-  },{
     'id': 1,
-    'name': 'Joel',
-    'avatar': '../../assets/avatar2.jpeg'
+    'name': 'John'
   },{
     'id': 2,
-    'name': 'James',
-    'avatar': '../../assets/avatar3.jpg'
+    'name': 'Joel'
   },{
     'id': 3,
-    'name': 'Jimmy',
-    'avatar': '../../assets/avatar4.jpeg'
+    'name': 'James'
   },{
     'id': 4,
-    'name': 'Jackson',
-    'avatar': '../../assets/avatar5.jpg'
+    'name': 'Jimmy'
   },{
     'id': 5,
-    'name': 'Jillian',
-    'avatar': '../../assets/avatar6.jpeg'
+    'name': 'Jackson'
   },{
     'id': 6,
-    'name': 'Julie',
-    'avatar': '../../assets/avatar7.jpg'
+    'name': 'Jillian'
   },{
     'id': 7,
-    'name': 'Devin',
-    'avatar': '../../assets/avatar1.jpeg'
+    'name': 'Julie'
+  },{
+    'id': 8,
+    'name': 'Devin'
   }
 ]
 export default friendsData;

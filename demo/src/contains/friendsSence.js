@@ -11,7 +11,8 @@ export default class FriendsSence extends Component {
     super(props);
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      dataSource: ds.cloneWithRows(friendsData)
+      dataSource: ds.cloneWithRows(friendsData),
+      imageIndex: 1
     };
   }
   goChat(rowData) {
@@ -25,6 +26,7 @@ export default class FriendsSence extends Component {
   }
 
   render() {
+    let imageIndex = 0;
     return (
       <View>
         <View
@@ -33,14 +35,49 @@ export default class FriendsSence extends Component {
         </View>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => 
-            <TouchableOpacity 
+          renderRow={(rowData) =>
+            <TouchableOpacity
               style={styles.listItem}
-              onPress={this.goChat.bind(this,rowData)}>
-              
-              <Image 
-                style={styles.avatar}
-                source={require('../../assets/avatar6.jpeg')} />
+              onPress={this.goChat.bind(this, rowData)}
+              >
+              {
+                (() => {
+                  switch (rowData.id) {
+                    case 1:
+                      return <Image
+                        source={require('../../assets/avatar1.jpeg')}
+                        style={styles.avatar} />
+                    case 2:
+                      return <Image
+                        source={require('../../assets/avatar2.jpeg')}
+                        style={styles.avatar} />
+                    case 3:
+                      return <Image
+                        source={require('../../assets/avatar3.jpeg')}
+                        style={styles.avatar} />
+                    case 4:
+                      return <Image
+                        source={require('../../assets/avatar4.jpeg')}
+                        style={styles.avatar} />
+                    case 5:
+                      return <Image
+                        source={require('../../assets/avatar5.jpeg')}
+                        style={styles.avatar} />
+                    case 6:
+                      return <Image
+                        source={require('../../assets/avatar6.jpeg')}
+                        style={styles.avatar} />
+                    case 7:
+                      return <Image
+                        source={require('../../assets/avatar7.jpeg')}
+                        style={styles.avatar} />
+                    case 8:
+                      return <Image
+                        source={require('../../assets/avatar8.jpeg')}
+                        style={styles.avatar} />
+                  }
+                })()
+              }
               <Text style={styles.name}>{rowData.name}</Text>
             </TouchableOpacity>
           }

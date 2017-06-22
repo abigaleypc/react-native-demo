@@ -11,7 +11,7 @@ export default class ChatSence extends Component {
     if (!window.abigale) {
       window.abigale = {
         friendsData: friendsData,
-        msgsData:msgsData
+        msgsData: msgsData
       }
     }
 
@@ -23,7 +23,7 @@ export default class ChatSence extends Component {
         msg: ''
       },
       dataSource: ds.cloneWithRows(msgsData[this.props.name]),
-      userInfo: friendsData.filter( it => (it.name == this.props.name))[0]
+      userInfo: friendsData.filter(it => (it.name == this.props.name))[0]
     };
   }
   goBack() {
@@ -38,10 +38,11 @@ export default class ChatSence extends Component {
     if (this.state.inputing.msg == '') {
       alert("不能不打字就发送的")
     }
-    else {  
+    else {
       window.abigale.msgsData = this.state.dataSource._dataBlob.s1;
       window.abigale.msgList = this.state.dataSource._dataBlob.s1;
       window.abigale.msgList.push(this.state.inputing);
+      console.log(window.abigale.msgList)
       this.setState({ dataSource: this.state.dataSource.cloneWithRows([...this.state.dataSource._dataBlob.s1, ...this.state.inputing]) })
       this.setState({ inputing: { type: 'self', msg: '' } })
     }
@@ -64,28 +65,62 @@ export default class ChatSence extends Component {
             <TouchableOpacity
               style={styles.listItem}>
               {
-                (rowData.type == 'self') ? 
-                  <View style={[styles.msg,styles.self]}>
-                    <Text style={[styles.selfMsgText,styles.msgText]}>
+                (rowData.type == 'self') ?
+                  <View style={[styles.msg, styles.self]}>
+                    <Text style={[styles.selfMsgText, styles.msgText]}>
                       {rowData.msg}
-                      {/*:Abigale*/}
                       {rowData.self}
                     </Text>
-                      <Image 
-                        style={styles.avatar}
-                        source={require('../../assets/avatar1.jpeg')}
-                      />
-                  </View>   : 
-                  <View style={[styles.msg,styles.friend]}>
-                      <Image 
-                        style={styles.avatar}
-                        source={require('../../assets/avatar6.jpeg')}
-                      />
-                      {/*{this.props.name}:*/}
-                    <Text style={[styles.friendMsgText,styles.msgText]}>
+
+                    <Image
+                      style={[styles.selfAvatar,styles.avatar]}
+                      source={require('../../assets/self.jpeg')}
+                    />
+                  </View> :
+                  <View style={[styles.msg, styles.friend]}>
+                    {
+                      (() => {
+                        switch (this.state.userInfo.id) {
+                          case 1:
+                            return <Image
+                              source={require('../../assets/avatar1.jpeg')}
+                              style={styles.avatar} />
+                          case 2:
+                            return <Image
+                              source={require('../../assets/avatar2.jpeg')}
+                              style={styles.avatar} />
+                          case 3:
+                            return <Image
+                              source={require('../../assets/avatar3.jpeg')}
+                              style={styles.avatar} />
+                          case 4:
+                            return <Image
+                              source={require('../../assets/avatar4.jpeg')}
+                              style={styles.avatar} />
+                          case 5:
+                            return <Image
+                              source={require('../../assets/avatar5.jpeg')}
+                              style={styles.avatar} />
+                          case 6:
+                            return <Image
+                              source={require('../../assets/avatar6.jpeg')}
+                              style={styles.avatar} />
+                          case 7:
+                            return <Image
+                              source={require('../../assets/avatar7.jpeg')}
+                              style={styles.avatar} />
+                          case 8:
+                            return <Image
+                              source={require('../../assets/avatar8.jpeg')}
+                              style={styles.avatar} />
+                        }
+
+                      })()
+                    }
+                    <Text style={[styles.friendMsgText, styles.msgText]}>
                       {rowData.msg}
                     </Text>
-                  </View>  
+                  </View>
               }
             </TouchableOpacity>
           }
@@ -95,7 +130,7 @@ export default class ChatSence extends Component {
             style={styles.input}
             onChangeText={
               (msg) => {
-                this.setState({ inputing: { name: 'Abigale', msg: msg } });
+                this.setState({ inputing: { type: 'self', msg: msg } });
               }
             }
             value={this.state.inputing.msg}
@@ -141,10 +176,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
-  self: { 
+  self: {
     alignSelf: 'stretch',
     alignItems: 'flex-end',
-    paddingRight: 10
+    paddingRight: 10,
+    height: 40
   },
   msgText: {
     lineHeight: 40,
@@ -152,23 +188,34 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5
   },
-  selfMsgText:{
+  selfMsgText: {
+    // flexDirection: 'row',
+    position:'absolute',
+    right: 50
   },
-  friendMsgText:{
+  friendMsgText: {
   },
   avatar: {
     width: 40,
     height: 40,
   },
+  selfAvatar: {
+    position:'absolute',
+    right: 10
+
+  },
   footer: {
-    flex:1,
-    flexDirection:'row',
+    flex: 1,
+    position: 'absolute',
+    width:375,
+    bottom: 20,
+    flexDirection: 'row',
     padding: 10,
     height: 40
   },
   input: {
-    flex:6,
-    flexDirection:'row',
+    flex: 6,
+    flexDirection: 'row',
     height: 40,
     borderColor: 'gray',
     borderWidth: .8,
@@ -176,8 +223,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   sendBtn: {
-    flex:1,
-    flexDirection:'row',
+    flex: 1,
+    flexDirection: 'row',
     marginLeft: 10,
     width: 30,
     height: 40,
