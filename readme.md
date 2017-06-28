@@ -64,7 +64,7 @@ this.props.navigator.push({
 这样就在堆栈里新增一个窗口，返回的话在这个堆栈去掉目前窗口即可，如下：
 
 ```js
-this.props.navigator.ppo();
+this.props.navigator.pop();
 ```
 
 也可以像跳入聊天窗口一样的方法跳入好友列表窗口
@@ -128,7 +128,7 @@ this.setState({
   <TouchableOpacity style={styles.sendBtn} onPress={this.sendMsg()} >
 	```
 	  
-	  应改为
+	应改为
 	
 	```js
   <TouchableOpacity style={styles.sendBtn} onPress={()=>{this.sendMsg()}} >
