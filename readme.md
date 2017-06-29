@@ -17,8 +17,7 @@
 
 > (它操作得有点慢，这个过程有界面调整和消息传送)
 
-* ![实战结果](https://github.com/abigaleypc/react-native-demo/blob/master/demo/assets/case.gif?raw=true)
-* ![实战结果](./demo/assets/case.gif =250x)
+* ![实战结果](https://github.com/abigaleypc/react-native-demo/blob/master/demo/assets/case.gif?raw=true =300*)
 
 
 ### 实现过程
