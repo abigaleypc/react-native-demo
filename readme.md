@@ -15,9 +15,7 @@
 
 ### 最终效果
 
-> (它操作得有点慢，这个过程有界面跳转和消息传送)
-
-<img src="https://github.com/abigaleypc/react-native-demo/blob/master/demo/assets/case.gif?raw=tru" width="300">
+<video src="https://github.com/abigaleypc/react-native-demo/blob/master/case.mp4?raw=true" controls="controls" autoplay="autoplay" loop="loop" style="width:50%;">
 
 
 ### 实现过程
